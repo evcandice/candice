@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Candice — Family AI Architecture</title>
+  <title>Candice: Family AI Architecture</title>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,600;12..96,700&family=Figtree:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -477,7 +477,7 @@
     <div class="hero-eyebrow">Family AI System</div>
     <h1>Candice</h1>
     <p class="hero-sub">
-      A personal AI built for one family. iMessage-first, memory-backed, proactively helpful — running fully self-hosted on a Mac at home.
+      Most AI assistants answer questions. Candice knows your family. She lives in iMessage, remembers what matters and shows up before you even have to ask.
     </p>
     <div class="hero-meta">
       <span>Python · FastAPI · Claude</span>
@@ -495,7 +495,7 @@
 <section id="overview">
   <div class="section-label">Architecture</div>
   <h2>System Overview</h2>
-  <p class="section-intro">Candice runs as a persistent background service on a Mac. It watches iMessage for incoming messages, routes them through a per-member persona and memory layer, calls Claude, and replies — all in under two seconds.</p>
+  <p class="section-intro">Candice runs quietly in the background on a Mac at home. When a family member sends a message, it reads the context, pulls up what it knows about that person, asks Claude and sends a reply. The whole thing takes under two seconds.</p>
 
   <div class="diagram-wrap">
     <div class="mermaid">
@@ -558,7 +558,7 @@ flowchart TD
 <section id="message-flow">
   <div class="section-label">Pipeline</div>
   <h2>Message Flow</h2>
-  <p class="section-intro">Every inbound message passes through a series of enrichment and routing steps before reaching Claude. Rich media is handled locally — no data leaves the home network.</p>
+  <p class="section-intro">Before Candice even talks to Claude, every message gets enriched. Photos get described, voice memos get transcribed and URLs get their titles fetched. It all happens on the home Mac. Nothing leaves the network.</p>
 
   <div class="diagram-wrap">
     <div class="mermaid">
@@ -613,42 +613,42 @@ sequenceDiagram
         <div class="flow-num">01</div>
         <div class="flow-content">
           <h4>Poll chat.db</h4>
-          <p>Reads <code>~/Library/Messages/chat.db</code> every 2 seconds. Filters to configured family handles only. Tapbacks (<code>item_type != 0</code>) are silently dropped.</p>
+          <p>Candice reads Apple's Messages database every 2 seconds. It only picks up messages from family members it knows about. Reactions like hearts and thumbs up are quietly ignored.</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num">02</div>
         <div class="flow-content">
           <h4>Rich Media Enrichment</h4>
-          <p>Images and video frames → Ollama llava for description. Audio → faster-whisper for transcription. URLs → httpx title fetch. All context prepended to the message text.</p>
+          <p>Photos and video frames get sent to a local vision model for a description. Voice memos get transcribed by Whisper. Links get their page title fetched. All of this gets added to the message before Claude sees it.</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num">03</div>
         <div class="flow-content">
           <h4>Agentic Task Detection</h4>
-          <p>Regex pre-filter checks for agentic intent (fix, build, deploy, test). Husband-only. Matched tasks are dispatched to <code>agent_runner.py</code> — a Claude Code subprocess with 15-min updates and 30-min timeout.</p>
+          <p>If the message sounds like a task (fix this, build that, deploy, test), Candice spins up a Claude Code subprocess to handle it. It sends progress updates every 15 minutes and times out after 30.</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num">04</div>
         <div class="flow-content">
           <h4>Persona Selection</h4>
-          <p>Each family member has a distinct system prompt in <code>butler/prompts/</code> — different tone, vocabulary, and rules. Persona is injected into every Claude call.</p>
+          <p>Each family member gets their own version of Candice. The dad gets direct and technical. The daughter gets patient and age-appropriate. These personality files live in <code>butler/prompts/</code> and load with every message.</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num">05</div>
         <div class="flow-content">
           <h4>Memory Lookup + Inject</h4>
-          <p>mem0 searches the member's vector store for relevant past context. Retrieved memories are prepended before Claude is called, giving it a persistent understanding of the person.</p>
+          <p>Before calling Claude, Candice searches that person's memory store for anything relevant from past conversations. Those memories get added to the prompt so Claude already knows who it is talking to.</p>
         </div>
       </div>
       <div class="flow-step">
         <div class="flow-num">06</div>
         <div class="flow-content">
           <h4>Claude + Reply + Memory Write</h4>
-          <p>Claude CLI (<code>claude -p</code>, haiku model) generates the response. Reply sent via <code>osascript</code>. The full exchange is written back to mem0 for future retrieval.</p>
+          <p>Claude generates the reply and it gets sent back through iMessage via osascript. Then the whole conversation gets saved to memory so Candice remembers it next time.</p>
         </div>
       </div>
     </div>
@@ -661,7 +661,7 @@ sequenceDiagram
 <section id="memory">
   <div class="section-label">Memory System</div>
   <h2>Long-Term Memory</h2>
-  <p class="section-intro">Each family member has an isolated memory namespace. mem0 extracts facts and preferences from every conversation, embeds them locally, and retrieves relevant context on demand.</p>
+  <p class="section-intro">Candice remembers things. Every conversation gets processed into facts, preferences and patterns. Each family member has their own private memory store that never mixes with anyone else's.</p>
 
   <div class="diagram-wrap">
     <div class="mermaid">
@@ -704,22 +704,22 @@ flowchart LR
     <div class="card">
       <div class="card-icon">🧠</div>
       <h3>Embeddings</h3>
-      <p>nomic-embed-text via Ollama at localhost:11434. All embedding computation stays on-device.</p>
+      <p>The nomic-embed-text model runs locally through Ollama. All the embedding work happens on the home Mac with no data sent anywhere.</p>
     </div>
     <div class="card">
       <div class="card-icon">⚗️</div>
       <h3>Extraction LLM</h3>
-      <p>qwen3:4b (Ollama) with <code>think=False</code> — extracts facts and preferences from each exchange. Thinking mode disabled to prevent mem0 format breakage.</p>
+      <p>qwen3:4b runs locally through Ollama and pulls out facts and preferences from each conversation. Thinking mode is turned off because it breaks mem0's output format.</p>
     </div>
     <div class="card">
       <div class="card-icon">🗄️</div>
       <h3>Vector Store</h3>
-      <p>Chroma at <code>~/.local/share/candice/mem0</code>. Three isolated namespaces: <code>mem0-husband</code>, <code>mem0-wife</code>, <code>mem0-daughter</code>.</p>
+      <p>Chroma stores all the family memories on disk. Each person has their own namespace so their data stays completely separate from everyone else's.</p>
     </div>
     <div class="card">
       <div class="card-icon">✂️</div>
       <h3>Memory Audit</h3>
-      <p><code>memory_audit.py</code> runs on a launchd schedule to prune stale and contradictory memory entries across all members.</p>
+      <p>A scheduled script runs regularly to clean up old or conflicting memories. Candice should only remember what is still true.</p>
     </div>
   </div>
 </section>
@@ -730,7 +730,7 @@ flowchart LR
 <section id="proactive">
   <div class="section-label">Proactive Engine</div>
   <h2>Triggers &amp; Automation</h2>
-  <p class="section-intro">An asyncio loop polls registered triggers every 60 seconds. Multi-layer guards prevent spam: cooldowns, global mutes, per-handle mutes, and a 30-minute anti-spam gate.</p>
+  <p class="section-intro">Candice does not wait to be asked. A background loop checks every 60 seconds whether it should reach out. To keep things sane there are multiple layers of protection against over-messaging: cooldowns, mutes and a 30-minute gap between any two sends.</p>
 
   <div class="diagram-wrap">
     <div class="mermaid">
@@ -780,7 +780,7 @@ flowchart TD
           <td>Every 15 min</td>
           <td>1h</td>
           <td><span class="status-blocked">Pending HA</span></td>
-          <td>Home Assistant anomaly detection — lights, doors, AC, motion</td>
+          <td>Home Assistant anomaly detection: lights left on, unlocked doors, AC running with nobody home, exterior motion</td>
         </tr>
         <tr>
           <td>pattern_watch</td>
@@ -807,7 +807,7 @@ flowchart TD
 <section id="stack">
   <div class="section-label">Tech Stack</div>
   <h2>Technologies</h2>
-  <p class="section-intro">Fully self-hosted. No third-party cloud services except Claude API. Everything else runs on the home Mac.</p>
+  <p class="section-intro">Everything runs at home. The only external service is the Claude API. All the models, data and processing stay on the home Mac.</p>
 
   <div class="stack-grid">
     <div class="stack-card">
@@ -889,7 +889,7 @@ flowchart TD
 <section id="infra">
   <div class="section-label">Infrastructure</div>
   <h2>Services &amp; Processes</h2>
-  <p class="section-intro">All services run as launchd agents on the home Mac. KeepAlive ensures auto-restart. <code>caffeinate -im</code> prevents the Mac from sleeping while the butler is wrapping uvicorn.</p>
+  <p class="section-intro">All six services run as background processes managed by macOS. If anything crashes it restarts automatically. The Mac is kept awake so Candice is always on.</p>
 
   <div class="infra-list">
     <div class="infra-item">
