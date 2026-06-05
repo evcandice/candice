@@ -452,6 +452,46 @@
     }
     footer strong { color: var(--teal-600); }
 
+    /* ─── DIFFERENTIATORS STRIP ──────────────── */
+    .diff-strip {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      align-items: center;
+    }
+    .diff-sep {
+      width: 1px;
+      height: 52px;
+      background: var(--border-soft);
+      justify-self: center;
+    }
+    .diff-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 32px;
+      gap: 5px;
+    }
+    .diff-item .diff-icon {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+    .diff-item .diff-label {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .diff-item .diff-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
     /* ─── MERMAID THEME ───────────────────────── */
     .mermaid svg { max-width: 100%; }
   </style>
@@ -466,9 +506,9 @@
     <li><a href="#message-flow">Message Flow</a></li>
     <li><a href="#memory">Memory</a></li>
     <li><a href="#proactive">Proactive</a></li>
+    <li><a href="#privacy">Privacy</a></li>
     <li><a href="#stack">Stack</a></li>
     <li><a href="#infra">Infra</a></li>
-    <li><a href="#privacy">Privacy</a></li>
   </ul>
 </nav>
 
@@ -478,7 +518,7 @@
     <div class="hero-eyebrow">Family AI System</div>
     <h1>Candice</h1>
     <p class="hero-sub">
-      Most AI assistants answer questions. Candice knows your family. She lives in iMessage, remembers what matters and shows up before you even have to ask.
+      Most AI knows facts. Candice knows your family. She lives in iMessage, remembers what matters to each person, and shows up before you even have to ask.
     </p>
     <div class="hero-meta">
       <span>Python · FastAPI · Claude</span>
@@ -487,6 +527,29 @@
       <span class="dot"></span>
       <span>Next.js Dashboard</span>
     </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- DIFFERENTIATORS -->
+<div class="diff-strip">
+  <div class="diff-item">
+    <span class="diff-icon">💬</span>
+    <span class="diff-label">iMessage-native</span>
+    <span class="diff-sub">No app. No wake word.<br>Just text, like always.</span>
+  </div>
+  <div class="diff-sep"></div>
+  <div class="diff-item">
+    <span class="diff-icon">🏠</span>
+    <span class="diff-label">Local-first</span>
+    <span class="diff-sub">Models, memory and media<br>stay on your Mac.</span>
+  </div>
+  <div class="diff-sep"></div>
+  <div class="diff-item">
+    <span class="diff-icon">🧠</span>
+    <span class="diff-label">Knows people, not devices</span>
+    <span class="diff-sub">Per-person memory.<br>Per-person personality.</span>
   </div>
 </div>
 
@@ -804,6 +867,48 @@ flowchart TD
 
 <hr class="divider">
 
+<!-- PRIVACY & SECURITY -->
+<section id="privacy">
+  <div class="section-label">Privacy &amp; Security</div>
+  <h2>Built to Stay Private</h2>
+  <p class="section-intro">Candice handles real family data — conversations, routines, home state. Privacy isn't a feature that was added. It's the constraint every architectural decision was made around.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🔐</div>
+      <h3>Secrets in the OS, Not in Code</h3>
+      <p>API keys and credentials are stored in macOS Keychain — not in source files, not in environment files that could be committed by accident. The system retrieves them at runtime so nothing sensitive ever touches the codebase.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚫</div>
+      <h3>Keys Never Reach the Browser</h3>
+      <p>The dashboard proxies all backend requests server-side. The API key is injected on the server before the request goes out — the browser only ever sees the response. No credentials in network tabs, no exposure through client-side code.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎭</div>
+      <h3>PII Stays Out of AI Context</h3>
+      <p>Raw identifiers like phone numbers are resolved immediately when a message arrives. Everything after that point — the persona, the memory lookup, the Claude call — works with names and roles only. The AI never sees personal identifiers.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏠</div>
+      <h3>Everything Stays Home</h3>
+      <p>Embeddings, memory extraction, media transcription, vision — all of it runs on the home Mac. The only data that leaves the network is the message text sent to the Claude API. No third party ever sees family photos, voice memos or home sensor data.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧱</div>
+      <h3>Isolated Memory per Person</h3>
+      <p>Each family member has a completely separate memory namespace. There is no shared store, no cross-contamination. What Candice knows about one person cannot surface in a conversation with another.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📂</div>
+      <h3>Identity Files, Not Hardcoded Prompts</h3>
+      <p>Personality and context live in vault files — readable, auditable, editable. The AI's understanding of who each person is comes from structured identity documents, not scattered strings in code. If something looks wrong, you can read and fix it directly.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
 <!-- TECH STACK -->
 <section id="stack">
   <div class="section-label">Tech Stack</div>
@@ -972,48 +1077,6 @@ flowchart LR
     style local fill:#EDE5D8,stroke:#C8BAA8
     style apple fill:#EDE5D8,stroke:#C8BAA8
       </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- PRIVACY & SECURITY -->
-<section id="privacy">
-  <div class="section-label">Privacy &amp; Security</div>
-  <h2>Built to Stay Private</h2>
-  <p class="section-intro">Candice handles real family data — conversations, routines, home state. Every design decision starts from the question: who should be able to see this, and how do we make sure no one else can?</p>
-
-  <div class="card-grid">
-    <div class="card">
-      <div class="card-icon">🔐</div>
-      <h3>Secrets in the OS, Not in Code</h3>
-      <p>API keys and credentials are stored in macOS Keychain — not in source files, not in environment files that could be committed by accident. The system retrieves them at runtime so nothing sensitive ever touches the codebase.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🚫</div>
-      <h3>Keys Never Reach the Browser</h3>
-      <p>The dashboard proxies all backend requests server-side. The API key is injected on the server before the request goes out — the browser only ever sees the response. No credentials in network tabs, no exposure through client-side code.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🎭</div>
-      <h3>PII Stays Out of AI Context</h3>
-      <p>Raw identifiers like phone numbers are resolved immediately when a message arrives. Everything after that point — the persona, the memory lookup, the Claude call — works with names and roles only. The AI never sees personal identifiers.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🏠</div>
-      <h3>Everything Stays Home</h3>
-      <p>Embeddings, memory extraction, media transcription, vision — all of it runs on the home Mac. The only data that leaves the network is the message text sent to the Claude API. No third party ever sees family photos, voice memos or home sensor data.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">🧱</div>
-      <h3>Isolated Memory per Person</h3>
-      <p>Each family member has a completely separate memory namespace. There is no shared store, no cross-contamination. What Candice knows about one person cannot surface in a conversation with another.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">📂</div>
-      <h3>Identity Files, Not Hardcoded Prompts</h3>
-      <p>Personality and context live in vault files — readable, auditable, editable. The AI's understanding of who each person is comes from structured identity documents, not scattered strings in code. If something looks wrong, you can read and fix it directly.</p>
     </div>
   </div>
 </section>
