@@ -4,6 +4,6 @@ Candice is a personal AI built for a family. She lives in iMessage, remembers wh
 
 This repo documents how she is built: the message pipeline, memory system, proactive engine, tech stack and infrastructure. All in one place, with diagrams you can actually follow.
 
-Visit the site: https://evcandice.github.io/candice/
+Visit the site: https://candiceai.vhenjoseph.com
 
 Built by Vhen. 2026.
