@@ -156,6 +156,14 @@ section{padding:var(--section-y) 0}
 .receipt{text-align:right; font-size:11px; color:#8d8d92; font-weight:600; margin:4px 3px 2px}
 .thread-tag{text-align:center; font-size:13px; color:var(--muted); margin:22px auto 0; max-width:44ch; line-height:1.5}
 .thread-tag b{color:var(--body); font-weight:500}
+/* ---------- device (iPhone frame) ---------- */
+.device{position:relative; max-width:334px; margin:0 auto; background:#101013;
+  border:1px solid rgba(255,255,255,.16); border-radius:54px; padding:12px;
+  box-shadow:var(--shadow-lift), inset 0 0 0 2px #000}
+.device-screen{position:relative; border-radius:44px; overflow:hidden; background:#000; aspect-ratio:664/1440}
+.device-screen video{width:100%; height:100%; object-fit:cover; display:block}
+.device .island{position:absolute; top:23px; left:50%; transform:translateX(-50%);
+  width:86px; height:25px; background:#000; border-radius:13px; z-index:3}
 
 /* ---------- split (text + panel) ---------- */
 .split{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(26px,4vw,52px); align-items:start}
@@ -276,41 +284,12 @@ footer{border-top:1px solid var(--line-2); padding:clamp(40px,6vw,64px) 0 48px; 
         <div class="eyebrow">How Candice actually reasons</div>
         <h2>Hand Candice a messy real-world problem. Watch what comes back.</h2>
       </div>
-      <div class="phone reveal">
-        <div class="phone-inner">
-          <div class="im-status">
-            <span>3:48</span>
-            <span class="r">5G <span class="batt"></span></span>
-          </div>
-          <div class="im-head">
-            <span class="back">‹</span>
-            <div class="av"><img src="assets/candice-doodle.png" alt="Candice" /></div>
-            <span class="nm">Candice <span class="chev">›</span></span>
-            <span class="info">ⓘ</span>
-          </div>
-          <div class="im-body">
-            <div class="im-time"><b>Today</b> 9:14 AM</div>
-            <div class="row out"><div class="bub tail">planning the smart home for the new place — how many aqara devices do we actually need, and where?</div></div>
-            <div class="row in"><div class="bub">
-              <span class="lead">For your layout I'd keep it lean — no rack, no server. It's all Matter/Thread, so it runs off the HomePod as the border router. Rough plan:</span>
-              <ul>
-                <li><b>Living / dining</b> — hub + 2 motion + 1 smart switch. Highest-traffic room, so automations earn their keep here.</li>
-                <li><b>Kitchen</b> — 1 motion + 1 door sensor on the yard door. You're never idle in there, skip the rest.</li>
-                <li><b>Master + Emaris'</b> — 1 climate sensor each (KL heat) + a balcony-door contact.</li>
-                <li><b>Balcony</b> — you measured it, 83×240. One contact sensor covers it.</li>
-                <li><b>Entry</b> — door sensor + the existing lock = your "everyone's home" trigger.</li>
-              </ul>
-            </div></div>
-            <div class="row in"><div class="bub tail">~11 devices, well inside the furnishing budget. Want me to check it against the SkyWorld handover so nothing clashes with their fittings? <span class="flag">The re-inspection still isn't booked, btw.</span></div></div>
-            <div class="receipt">Delivered</div>
-          </div>
-          <div class="im-composer">
-            <span class="plus">+</span>
-            <span class="field">iMessage <span class="send">↑</span></span>
-          </div>
+      <div class="device reveal">
+        <div class="device-screen">
+          <video src="assets/candice-demo.mp4" poster="assets/candice-demo-poster.jpg" autoplay muted loop playsinline preload="auto"></video>
         </div>
       </div>
-      <div class="thread-tag">Real constraints, real memory — the renovation budget, the SkyWorld handover, and the balcony measured at <b>83 × 240</b>. Candice already knew all of it.</div>
+      <div class="thread-tag">A real conversation with Candice — <b>screen-recorded, unedited</b>.</div>
     </div>
   </section>
 
