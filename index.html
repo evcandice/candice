@@ -98,26 +98,53 @@ section{padding:var(--section-y) 0}
 .section-head h2{font-size:var(--text-h2); line-height:1.05; margin:14px 0 16px; max-width:20ch}
 .section-head p{font-size:var(--text-lead); color:var(--body); margin:0; max-width:56ch}
 
-/* ---------- featured thread ---------- */
+/* ---------- featured thread (real iMessage UI) ---------- */
 .featured{padding-top:clamp(20px,3vw,32px)}
-.featured .lead-in{text-align:center; margin-bottom:clamp(24px,4vw,40px)}
+.featured .lead-in{text-align:center; margin-bottom:clamp(26px,4vw,44px)}
 .featured .lead-in h2{font-size:var(--text-h2); line-height:1.06; margin:12px auto 0; max-width:22ch}
-.thread-card{background:var(--bg-2); border:1px solid var(--line-2); border-radius:22px;
-  padding:clamp(20px,3vw,32px); max-width:660px; margin:0 auto; box-shadow:var(--shadow-lift)}
-.thread-top{display:flex; align-items:center; justify-content:center; gap:9px; padding-bottom:16px;
-  border-bottom:1px solid var(--line-2); margin-bottom:18px; color:var(--muted); font-size:13px}
-.thread-top .who{color:var(--ink); font-weight:600}
-.thread{display:flex; flex-direction:column; gap:10px}
-.imsg{max-width:84%; padding:11px 15px; border-radius:18px; font-size:15px; line-height:1.5}
-.imsg.them{align-self:flex-start; background:var(--surface); color:var(--body); border:1px solid var(--line-2); border-bottom-left-radius:6px}
-.imsg.you{align-self:flex-end; background:var(--imsg-you); color:#fff; border-bottom-right-radius:6px}
-.imsg .lead{color:var(--ink)}
-.imsg ul{margin:9px 0 2px; padding-left:17px}
-.imsg li{margin:6px 0}
-.imsg b{color:var(--ink)}
-.imsg .flag{color:var(--brass-soft)}
-.thread-tag{text-align:center; font-family:var(--font-mono); font-size:11px; color:var(--muted);
-  margin-top:18px; letter-spacing:.1em; text-transform:uppercase}
+
+.phone{max-width:412px; margin:0 auto; background:#000; border:1px solid rgba(255,255,255,.14);
+  border-radius:44px; padding:11px; box-shadow:var(--shadow-lift)}
+.phone-inner{background:#000; border-radius:34px; overflow:hidden; position:relative}
+/* header */
+.im-head{position:relative; display:flex; flex-direction:column; align-items:center; gap:5px;
+  padding:13px 16px 11px; background:rgba(28,28,30,.82); backdrop-filter:blur(20px);
+  border-bottom:.5px solid rgba(255,255,255,.09)}
+.im-head .back{position:absolute; left:15px; top:19px; color:#0A84FF; font-size:24px; line-height:1; font-weight:300}
+.im-head .info{position:absolute; right:16px; top:21px; color:#0A84FF; font-size:16px}
+.im-head .av{width:52px; height:52px; border-radius:50%; overflow:hidden; display:grid; place-items:center;
+  background:radial-gradient(120% 120% at 30% 20%, #F0A6A0 0%, #C87c74 100%)}
+.im-head .av img{width:118%; height:118%; object-fit:cover; object-position:center 32%}
+.im-head .nm{font-size:13px; color:#fff; font-weight:500; display:flex; align-items:center; gap:5px}
+.im-head .nm .chev{opacity:.45; font-size:10px}
+
+/* message area */
+.im-body{padding:12px 14px 16px; background:#000; display:flex; flex-direction:column}
+.im-time{text-align:center; font-size:11px; color:#8d8d92; margin:8px 0 12px}
+.im-time b{color:#d6d6da; font-weight:600}
+.row{display:flex; margin-top:2px}
+.row.out{justify-content:flex-end}
+.row.in{justify-content:flex-start}
+.bub{position:relative; max-width:76%; padding:8px 13px; font-size:15px; line-height:1.34; border-radius:18px; z-index:1;
+  word-wrap:break-word}
+.row.out .bub{background:#0A84FF; color:#fff}
+.row.in .bub{background:#3B3B3D; color:#fff}
+/* iOS bubble tails — only on the last bubble of a sender group */
+.row.out .bub.tail::before{content:""; position:absolute; z-index:0; bottom:0; right:-7px; height:20px; width:20px;
+  background:#0A84FF; border-bottom-left-radius:16px 14px}
+.row.out .bub.tail::after{content:""; position:absolute; z-index:1; bottom:0; right:-10px; height:21px; width:11px;
+  background:#000; border-bottom-left-radius:11px}
+.row.in .bub.tail::before{content:""; position:absolute; z-index:0; bottom:0; left:-7px; height:20px; width:20px;
+  background:#3B3B3D; border-bottom-right-radius:16px 14px}
+.row.in .bub.tail::after{content:""; position:absolute; z-index:1; bottom:0; left:-10px; height:21px; width:11px;
+  background:#000; border-bottom-right-radius:11px}
+.bub .lead{display:block}
+.bub ul{margin:7px 0 1px; padding-left:16px}
+.bub li{margin:5px 0}
+.bub .flag{color:#ffd479}
+.receipt{text-align:right; font-size:11px; color:#8d8d92; font-weight:600; margin:4px 3px 2px}
+.thread-tag{text-align:center; font-size:13px; color:var(--muted); margin:22px auto 0; max-width:44ch; line-height:1.5}
+.thread-tag b{color:var(--body); font-weight:500}
 
 /* ---------- split (text + panel) ---------- */
 .split{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(26px,4vw,52px); align-items:start}
@@ -206,27 +233,36 @@ footer{border-top:1px solid var(--line-2); padding:clamp(40px,6vw,64px) 0 48px; 
   <section id="thread" class="featured">
     <div class="wrap">
       <div class="lead-in reveal">
-        <div class="eyebrow">A real thread · nothing scripted</div>
+        <div class="eyebrow">How Candice actually reasons</div>
         <h2>Hand her a messy real-world problem. Watch what comes back.</h2>
       </div>
-      <div class="thread-card reveal">
-        <div class="thread-top"><span class="live"></span><span class="who">Candice</span><span>· iMessage</span></div>
-        <div class="thread">
-          <div class="imsg you">planning the smart home for the new place. how many aqara devices do we actually need, and where?</div>
-          <div class="imsg them">
-            <span class="lead">For your layout I'd keep it lean — no rack, no server. It's all Matter/Thread, so it runs off the HomePod as the border router. Rough plan:</span>
-            <ul>
-              <li><b>Living / dining</b> — hub + 2 motion + 1 smart switch. Highest-traffic room, so automations earn their keep here.</li>
-              <li><b>Kitchen</b> — 1 motion + 1 door sensor on the yard door. You're never idle in there, skip the rest.</li>
-              <li><b>Master + Emaris'</b> — 1 climate sensor each (KL heat) + a balcony-door contact.</li>
-              <li><b>Balcony</b> — you measured it, 83×240. One contact sensor covers it.</li>
-              <li><b>Entry</b> — door sensor + the existing lock = your "everyone's home" trigger.</li>
-            </ul>
+      <div class="phone reveal">
+        <div class="phone-inner">
+          <div class="im-head">
+            <span class="back">‹</span>
+            <div class="av"><img src="assets/candice-doodle.png" alt="Candice" /></div>
+            <span class="nm">Candice <span class="chev">▾</span></span>
+            <span class="info">ⓘ</span>
           </div>
-          <div class="imsg them">~11 devices, ~RM1.8k — well inside the RM20k furnishing slice. Want me to check it against the SkyWorld handover so nothing clashes with their fittings? <span class="flag">The re-inspection still isn't booked, btw.</span></div>
+          <div class="im-body">
+            <div class="im-time"><b>Today</b> 9:14 AM</div>
+            <div class="row out"><div class="bub tail">planning the smart home for the new place — how many aqara devices do we actually need, and where?</div></div>
+            <div class="row in"><div class="bub">
+              <span class="lead">For your layout I'd keep it lean — no rack, no server. It's all Matter/Thread, so it runs off the HomePod as the border router. Rough plan:</span>
+              <ul>
+                <li><b>Living / dining</b> — hub + 2 motion + 1 smart switch. Highest-traffic room, so automations earn their keep here.</li>
+                <li><b>Kitchen</b> — 1 motion + 1 door sensor on the yard door. You're never idle in there, skip the rest.</li>
+                <li><b>Master + Emaris'</b> — 1 climate sensor each (KL heat) + a balcony-door contact.</li>
+                <li><b>Balcony</b> — you measured it, 83×240. One contact sensor covers it.</li>
+                <li><b>Entry</b> — door sensor + the existing lock = your "everyone's home" trigger.</li>
+              </ul>
+            </div></div>
+            <div class="row in"><div class="bub tail">~11 devices, well inside the furnishing budget. Want me to check it against the SkyWorld handover so nothing clashes with their fittings? <span class="flag">The re-inspection still isn't booked, btw.</span></div></div>
+            <div class="receipt">Delivered</div>
+          </div>
         </div>
-        <div class="thread-tag">She remembered the budget, the developer, and the balcony you measured last week.</div>
       </div>
+      <div class="thread-tag">Real constraints, real memory — the renovation budget, the SkyWorld handover, and the balcony measured at <b>83 × 240</b>. She already knew all of it.</div>
     </div>
   </section>
 
