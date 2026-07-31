@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Candice — Your family's private AI</title>
-<meta name="description" content="Candice is your family's private AI. She lives in iMessage, remembers what matters to each person, and lends a hand before you even ask." />
+<title>Candice — a family AI that actually lives here</title>
+<meta name="description" content="Candice is the private AI a family in Malaysia built for themselves. She lives in iMessage, knows each person, does real work, and stays in your house." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231E1E1E'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23F0A6A0'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,11 +15,12 @@
   --bg:#1A1A1A; --bg-2:#1E1E1E; --surface:#242220; --wash:#2A2724;
   --ink:#F5F3EF; --body:#CFC7BA; --muted:#8B8378;
   --brass:#B9844B; --brass-soft:#D4A263; --blush:#F0A6A0;
+  --imsg-you:#2C6BED;
   --line:rgba(245,243,239,.14); --line-2:rgba(245,243,239,.07);
   --paper:#F5F3EF;
   --font-sans:'Geist',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
   --font-mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace;
-  --text-display:clamp(40px,7.4vw,86px);
+  --text-display:clamp(38px,6.6vw,76px);
   --text-h2:clamp(28px,4.6vw,50px);
   --text-h3:clamp(21px,2.4vw,28px);
   --text-lead:clamp(19px,2.1vw,25px);
@@ -69,17 +70,17 @@ header{position:sticky; top:0; z-index:20; backdrop-filter:blur(12px);
 .live::after{content:""; position:absolute; inset:0; border-radius:50%; background:var(--blush); animation:pulse 2.4s var(--ease) infinite}
 
 /* ---------- hero ---------- */
-.hero{padding:clamp(56px,9vw,110px) 0 var(--section-y)}
+.hero{padding:clamp(56px,9vw,110px) 0 clamp(40px,6vw,72px)}
 .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(30px,5vw,64px); align-items:center}
-.hero h1{font-size:var(--text-display); line-height:1.02; letter-spacing:var(--ls-display); margin:18px 0 22px; max-width:14ch}
+.hero h1{font-size:var(--text-display); line-height:1.04; letter-spacing:var(--ls-display); margin:18px 0 22px; max-width:16ch}
 .hero h1 em{font-style:normal; color:var(--brass-soft)}
-.hero-lead{font-size:var(--text-lead); line-height:1.5; color:var(--body); max-width:44ch; margin:0 0 30px}
+.hero-lead{font-size:var(--text-lead); line-height:1.5; color:var(--body); max-width:42ch; margin:0 0 30px}
 .hero-cta{display:flex; gap:14px; flex-wrap:wrap}
-.hero-media{justify-self:center; width:100%; max-width:500px}
+.hero-media{justify-self:center; width:100%; max-width:460px}
 .hero-media img{width:100%; height:auto; display:block}
 @media(max-width:820px){
   .hero-grid{grid-template-columns:1fr}
-  .hero-media{order:-1; max-width:360px}
+  .hero-media{order:-1; max-width:320px}
   .hero h1{max-width:none}
 }
 
@@ -87,7 +88,7 @@ header{position:sticky; top:0; z-index:20; backdrop-filter:blur(12px);
 .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line-2);
   border:1px solid var(--line-2); border-radius:var(--radius-card); overflow:hidden; margin-top:clamp(30px,5vw,54px)}
 .stat{background:var(--bg-2); padding:22px 24px}
-.stat .n{font-family:var(--font-mono); font-size:clamp(22px,3vw,30px); color:var(--ink); letter-spacing:-.02em}
+.stat .n{font-family:var(--font-mono); font-size:clamp(18px,2.4vw,24px); color:var(--ink); letter-spacing:-.02em}
 .stat .l{font-size:13px; color:var(--muted); margin-top:6px}
 @media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr)}}
 
@@ -97,24 +98,39 @@ section{padding:var(--section-y) 0}
 .section-head h2{font-size:var(--text-h2); line-height:1.05; margin:14px 0 16px; max-width:20ch}
 .section-head p{font-size:var(--text-lead); color:var(--body); margin:0; max-width:56ch}
 
-/* ---------- feature cards ---------- */
-.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(16px,2vw,22px)}
-@media(max-width:820px){.cards{grid-template-columns:1fr}}
-.card{background:var(--bg-2); border:1px solid var(--line-2); border-radius:var(--radius-card);
-  padding:var(--card-pad); transition:border-color .3s var(--ease), transform .3s var(--ease)}
-.card:hover{border-color:var(--line); transform:translateY(-4px)}
-.card .ic{width:38px; height:38px; border-radius:10px; display:grid; place-items:center;
-  background:var(--wash); border:1px solid var(--line-2); margin-bottom:18px; color:var(--brass-soft)}
-.card h3{font-size:var(--text-h3); margin-bottom:10px; letter-spacing:-.02em}
-.card p{font-size:15.5px; color:var(--body); margin:0}
+/* ---------- featured thread ---------- */
+.featured{padding-top:clamp(20px,3vw,32px)}
+.featured .lead-in{text-align:center; margin-bottom:clamp(24px,4vw,40px)}
+.featured .lead-in h2{font-size:var(--text-h2); line-height:1.06; margin:12px auto 0; max-width:22ch}
+.thread-card{background:var(--bg-2); border:1px solid var(--line-2); border-radius:22px;
+  padding:clamp(20px,3vw,32px); max-width:660px; margin:0 auto; box-shadow:var(--shadow-lift)}
+.thread-top{display:flex; align-items:center; justify-content:center; gap:9px; padding-bottom:16px;
+  border-bottom:1px solid var(--line-2); margin-bottom:18px; color:var(--muted); font-size:13px}
+.thread-top .who{color:var(--ink); font-weight:600}
+.thread{display:flex; flex-direction:column; gap:10px}
+.imsg{max-width:84%; padding:11px 15px; border-radius:18px; font-size:15px; line-height:1.5}
+.imsg.them{align-self:flex-start; background:var(--surface); color:var(--body); border:1px solid var(--line-2); border-bottom-left-radius:6px}
+.imsg.you{align-self:flex-end; background:var(--imsg-you); color:#fff; border-bottom-right-radius:6px}
+.imsg .lead{color:var(--ink)}
+.imsg ul{margin:9px 0 2px; padding-left:17px}
+.imsg li{margin:6px 0}
+.imsg b{color:var(--ink)}
+.imsg .flag{color:var(--brass-soft)}
+.thread-tag{text-align:center; font-family:var(--font-mono); font-size:11px; color:var(--muted);
+  margin-top:18px; letter-spacing:.1em; text-transform:uppercase}
 
-/* ---------- how it works ---------- */
-.flow{background:var(--bg-2); border:1px solid var(--line-2); border-radius:var(--radius-card); overflow:hidden}
-.step{display:grid; grid-template-columns:64px 1fr; gap:22px; padding:clamp(24px,3vw,34px) var(--card-pad); border-bottom:1px solid var(--line-2)}
-.step:last-child{border-bottom:0}
-.step .k{font-family:var(--font-mono); font-size:14px; color:var(--brass); padding-top:4px}
-.step h3{font-size:20px; margin-bottom:7px}
-.step p{margin:0; font-size:15.5px; color:var(--body); max-width:60ch}
+/* ---------- split (text + panel) ---------- */
+.split{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(26px,4vw,52px); align-items:start}
+@media(max-width:820px){.split{grid-template-columns:1fr}}
+.reason{background:var(--bg-2); border:1px solid var(--line-2); border-radius:var(--radius-card); padding:var(--card-pad)}
+.reason h3{font-family:var(--font-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--brass-soft); margin-bottom:16px}
+.reason ul{margin:0; padding-left:18px; color:var(--body); font-size:15.5px}
+.reason li{margin:11px 0}
+.reason li b{color:var(--ink)}
+.pullquote{border-left:2px solid var(--brass); padding:2px 0 2px 20px; font-size:var(--text-lead);
+  color:var(--ink); font-style:italic; line-height:1.4}
+.split .copy p{font-size:var(--text-lead); color:var(--body); max-width:52ch}
+.split .copy h2{font-size:var(--text-h2); line-height:1.05; margin:14px 0 16px; max-width:18ch}
 
 /* ---------- confirm callout ---------- */
 .callout{background:linear-gradient(180deg,var(--surface),var(--bg-2)); border:1px solid var(--line);
@@ -148,10 +164,10 @@ footer{border-top:1px solid var(--line-2); padding:clamp(40px,6vw,64px) 0 48px; 
   <div class="wrap nav">
     <a class="brand" href="#top"><span class="dot"></span>Candice</a>
     <nav class="nav-links">
-      <a href="#what">What she is</a>
-      <a href="#build">How she's built</a>
-      <a href="#flow">How she works</a>
-      <a href="#confirm">Human-in-the-loop</a>
+      <a href="#thread">See her think</a>
+      <a href="#knows">She knows you</a>
+      <a href="#works">She does the work</a>
+      <a href="#own">You own her</a>
     </nav>
     <a class="btn btn-ghost" href="https://vhenjoseph.com/">Built by Vhen ↗</a>
   </div>
@@ -163,12 +179,12 @@ footer{border-top:1px solid var(--line-2); padding:clamp(40px,6vw,64px) 0 48px; 
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="eyebrow">Family AI · runs every day</div>
-        <h1>Candice</h1>
-        <p class="hero-lead">Your <em>family's</em> private AI. She lives in iMessage, remembers what matters to each person, and lends a hand before you even ask.</p>
+        <div class="eyebrow">A family AI that actually lives here</div>
+        <h1>She remembers what matters, does the work, <em>and stays in your house.</em></h1>
+        <p class="hero-lead">Candice is the private AI a family in Malaysia built for themselves. She lives in iMessage, knows each person, and lends a hand before you even ask.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#what"><span class="live"></span>Meet Candice</a>
-          <a class="btn btn-ghost" href="#build">See how she's built ↓</a>
+          <a class="btn btn-primary" href="#thread"><span class="live"></span>See how she thinks</a>
+          <a class="btn btn-ghost" href="#own">Build your own ↓</a>
         </div>
       </div>
       <div class="hero-media">
@@ -178,82 +194,87 @@ footer{border-top:1px solid var(--line-2); padding:clamp(40px,6vw,64px) 0 48px; 
 
     <div class="wrap">
       <div class="stats reveal">
-        <div class="stat"><div class="n">Multi-agent</div><div class="l">Orchestration layer</div></div>
-        <div class="stat"><div class="n">Local + cloud</div><div class="l">Long-term memory</div></div>
-        <div class="stat"><div class="n">Self-auditing</div><div class="l">Picks its best model</div></div>
-        <div class="stat"><div class="n">Ask-first</div><div class="l">Human in the loop</div></div>
+        <div class="stat"><div class="n">Runs at home</div><div class="l">Your data stays yours</div></div>
+        <div class="stat"><div class="n">Remembers</div><div class="l">Across weeks, not messages</div></div>
+        <div class="stat"><div class="n">Does real work</div><div class="l">Not just answers</div></div>
+        <div class="stat"><div class="n">No subscription</div><div class="l">A household, not a product</div></div>
       </div>
     </div>
   </section>
 
-  <!-- WHAT SHE IS -->
-  <section id="what">
+  <!-- FEATURED THREAD -->
+  <section id="thread" class="featured">
     <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow">What she is</div>
-        <h2>A household brain, not a chatbot.</h2>
-        <p>Candice lives with one family. She reads the calendar, tracks the budget, remembers what matters across weeks, and does real work with real tools — but she pauses and asks before anything that can't be undone. Built by Vhen, and she helped build this page.</p>
+      <div class="lead-in reveal">
+        <div class="eyebrow">A real thread · nothing scripted</div>
+        <h2>Hand her a messy real-world problem. Watch what comes back.</h2>
       </div>
-      <div class="cards">
-        <div class="card reveal">
-          <div class="ic">◍</div>
-          <h3>Multi-agent orchestration</h3>
-          <p>A router hands each request to the right agent and tool, with human-in-the-loop confirmation wired in at every step that matters.</p>
+      <div class="thread-card reveal">
+        <div class="thread-top"><span class="live"></span><span class="who">Candice</span><span>· iMessage</span></div>
+        <div class="thread">
+          <div class="imsg you">planning the smart home for the new place. how many aqara devices do we actually need, and where?</div>
+          <div class="imsg them">
+            <span class="lead">For your layout I'd keep it lean — no rack, no server. It's all Matter/Thread, so it runs off the HomePod as the border router. Rough plan:</span>
+            <ul>
+              <li><b>Living / dining</b> — hub + 2 motion + 1 smart switch. Highest-traffic room, so automations earn their keep here.</li>
+              <li><b>Kitchen</b> — 1 motion + 1 door sensor on the yard door. You're never idle in there, skip the rest.</li>
+              <li><b>Master + Emaris'</b> — 1 climate sensor each (KL heat) + a balcony-door contact.</li>
+              <li><b>Balcony</b> — you measured it, 83×240. One contact sensor covers it.</li>
+              <li><b>Entry</b> — door sensor + the existing lock = your "everyone's home" trigger.</li>
+            </ul>
+          </div>
+          <div class="imsg them">~11 devices, ~RM1.8k — well inside the RM20k furnishing slice. Want me to check it against the SkyWorld handover so nothing clashes with their fittings? <span class="flag">The re-inspection still isn't booked, btw.</span></div>
         </div>
-        <div class="card reveal">
-          <div class="ic">❖</div>
-          <h3>Long-term memory</h3>
-          <p>Persistent memory across local and cloud models — she remembers people, preferences, and history, not just the current message.</p>
-        </div>
-        <div class="card reveal">
-          <div class="ic">⟳</div>
-          <h3>Self-auditing evals</h3>
-          <p>A nightly eval harness benchmarks the local models and picks the best one for the job — she keeps her own quality honest.</p>
-        </div>
+        <div class="thread-tag">She remembered the budget, the developer, and the balcony you measured last week.</div>
       </div>
     </div>
   </section>
 
-  <!-- HOW SHE'S BUILT -->
-  <section id="build">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow">How she's built</div>
-        <h2>Serious engineering under a warm face.</h2>
-        <p>The doodle is friendly on purpose. Underneath is a real system: an orchestration layer, tool use, a memory store, and a self-audit loop — running privately, every day.</p>
+  <!-- SHE KNOWS YOU -->
+  <section id="knows">
+    <div class="wrap split">
+      <div class="copy reveal">
+        <div class="eyebrow">01 — She knows you</div>
+        <h2>Not a chatbot that forgets.</h2>
+        <p>Candice holds the running context of your life — the renovation budget and how it's split, that the new place is still waiting on its re-inspection, the balcony you measured last week. So when you ask, she's already standing on everything that came before it.</p>
       </div>
-      <div class="cards">
-        <div class="card reveal">
-          <div class="ic">▤</div>
-          <h3>Private by default</h3>
-          <p>Runs close to home. Local models handle memory and everyday reasoning; the cloud is reached for only when it earns its place.</p>
-        </div>
-        <div class="card reveal">
-          <div class="ic">◈</div>
-          <h3>Tools, not talk</h3>
-          <p>Calendar, email, finances, files — Candice acts through real integrations, and reports back with facts instead of guesses.</p>
-        </div>
-        <div class="card reveal">
-          <div class="ic">◔</div>
-          <h3>Always improving</h3>
-          <p>A daily self-audit turns mistakes into standing behaviors, so she gets a little sharper every day without being told twice.</p>
-        </div>
+      <div class="reason reveal">
+        <div class="pullquote">"You don't repeat yourself to Candice. She was there the first time."</div>
       </div>
     </div>
   </section>
 
-  <!-- HOW SHE WORKS -->
-  <section id="flow">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <div class="eyebrow">How she works</div>
-        <h2>From a single message to real action.</h2>
+  <!-- SHE DOES THE WORK -->
+  <section id="works">
+    <div class="wrap split">
+      <div class="copy reveal">
+        <div class="eyebrow">02 — She does the work</div>
+        <h2>Five steps ahead, not one answer behind.</h2>
+        <p>Give her a messy task with real constraints and she comes back with something you can act on — then catches the thing you hadn't gotten to yet. She doesn't hand you a shopping list. She reasons it room by room, checks it against the budget, and flags the re-inspection nobody's booked — because that's what blocks the whole timeline.</p>
       </div>
-      <div class="flow reveal">
-        <div class="step"><div class="k">01</div><div><h3>Understand</h3><p>She reads the request in the context of everything she already knows about the family — no cold starts.</p></div></div>
-        <div class="step"><div class="k">02</div><div><h3>Plan</h3><p>The router picks the right agent, the right tools, and the right model for the task.</p></div></div>
-        <div class="step"><div class="k">03</div><div><h3>Check with you</h3><p>Before anything that matters, she confirms — a deliberate pause between intent and action.</p></div></div>
-        <div class="step"><div class="k">04</div><div><h3>Act &amp; report</h3><p>She does the work with real tools and comes back with the outcome, in plain words.</p></div></div>
+      <div class="reason reveal">
+        <h3>How she figured it out</h3>
+        <ul>
+          <li>Started from the <b>floor plan and how each room gets used</b> — not a device catalog.</li>
+          <li>Chose <b>Matter / Thread</b> so it runs off a HomePod border router — no server, no monthly anything.</li>
+          <li>Weighed every device against the <b>furnishing budget</b>, not the renovation-works budget.</li>
+          <li>Cross-referenced the <b>developer's handover fittings</b> so nothing gets bought twice.</li>
+          <li>Used the <b>measurements already on file</b> instead of asking again.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- YOU OWN HER -->
+  <section id="own">
+    <div class="wrap split">
+      <div class="copy reveal">
+        <div class="eyebrow">03 — You own her</div>
+        <h2>She runs from your home, on your terms.</h2>
+        <p>Your family's life — the budget, the messages, the plans — stays yours. No cloud company reading over your shoulder, no account to be the product of. Candice is a member of the household, not a subscription. And before anything that can't be undone, she checks with you first.</p>
+      </div>
+      <div class="reason reveal">
+        <div class="pullquote">"A member of the family. Not a monthly fee."</div>
       </div>
     </div>
   </section>
