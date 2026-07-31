@@ -169,6 +169,34 @@ section{padding:var(--section-y) 0}
   color:var(--body); background:var(--bg); border:1px solid var(--line-2); border-radius:100px; padding:10px 18px; margin-top:8px}
 .chatline .live{background:var(--brass-soft)}
 
+/* ---------- PII flow ---------- */
+.pii-flow{display:flex; align-items:stretch; justify-content:center; gap:4px; flex-wrap:nowrap;
+  margin:clamp(30px,5vw,48px) 0 clamp(20px,3vw,30px)}
+.pii-node{flex:1 1 0; min-width:0; background:var(--bg-2); border:1px solid var(--line-2);
+  border-radius:14px; padding:18px 15px; position:relative}
+.pii-node.key{border-color:var(--brass); box-shadow:0 0 0 1px rgba(185,132,75,.22)}
+.pii-node .n{font-family:var(--font-mono); font-size:11px; color:var(--muted); letter-spacing:.1em}
+.pii-node .ic{width:34px; height:34px; border-radius:9px; display:grid; place-items:center;
+  background:var(--wash); border:1px solid var(--line-2); color:var(--brass-soft); margin:11px 0 12px; font-size:16px}
+.pii-node.key .ic{color:#1A1A1A; background:var(--brass-soft); border-color:var(--brass-soft)}
+.pii-node h4{font-size:15px; color:var(--ink); margin:0 0 5px; letter-spacing:-.015em; font-weight:600}
+.pii-node p{font-size:12.5px; color:var(--body); margin:0; line-height:1.4}
+.pii-arrow{display:flex; align-items:center; color:var(--muted); font-size:15px; flex:none; padding:0 2px}
+@media(max-width:860px){
+  .pii-flow{flex-direction:column; align-items:stretch}
+  .pii-arrow{transform:rotate(90deg); justify-content:center; padding:7px 0}
+}
+.pii-example{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+@media(max-width:680px){.pii-example{grid-template-columns:1fr}}
+.pii-col{background:var(--bg-2); border:1px solid var(--line-2); border-radius:14px; padding:20px 22px}
+.pii-col.masked{border-color:rgba(185,132,75,.28)}
+.pii-col .lbl{font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); display:flex; align-items:center; gap:8px; margin-bottom:13px}
+.pii-col code{font-family:var(--font-mono); font-size:13px; color:var(--body); line-height:1.7; display:block}
+.pii-col mark{background:rgba(185,132,75,.15); color:var(--brass-soft); border:1px solid rgba(185,132,75,.32);
+  border-radius:5px; padding:1px 5px; font-style:normal}
+.pii-col b{color:var(--ink); font-weight:600}
+
 /* ---------- footer ---------- */
 footer{border-top:1px solid var(--line-2); padding:clamp(40px,6vw,64px) 0 48px; color:var(--muted); font-size:14px}
 .foot-grid{display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap}
@@ -195,6 +223,7 @@ footer{border-top:1px solid var(--line-2); padding:clamp(40px,6vw,64px) 0 48px; 
       <a href="#knows">Candice knows you</a>
       <a href="#works">Candice does the work</a>
       <a href="#own">You own Candice</a>
+      <a href="#privacy">Privacy</a>
     </nav>
     <a class="btn btn-ghost" href="https://vhenjoseph.com/">Built by Vhen ↗</a>
   </div>
@@ -311,6 +340,72 @@ footer{border-top:1px solid var(--line-2); padding:clamp(40px,6vw,64px) 0 48px; 
       </div>
       <div class="reason reveal">
         <div class="pullquote">"A member of the family. Not a monthly fee."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY / PII -->
+  <section id="privacy">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">04 — Your privacy, by design</div>
+        <h2>Names and numbers never leave in the clear.</h2>
+        <p>When a request needs a cloud model, your private details don't travel with it. They're masked on the way out and restored on the way back — so the model does the reasoning without ever seeing who, or what, it's really about.</p>
+      </div>
+
+      <div class="pii-flow reveal">
+        <div class="pii-node">
+          <div class="n">01</div>
+          <div class="ic">✉</div>
+          <h4>Your text</h4>
+          <p>A message lands in iMessage — names, amounts, the works.</p>
+        </div>
+        <div class="pii-arrow">→</div>
+        <div class="pii-node">
+          <div class="n">02</div>
+          <div class="ic">❖</div>
+          <h4>Grab context</h4>
+          <p>Candice pulls the memory and facts the answer needs.</p>
+        </div>
+        <div class="pii-arrow">→</div>
+        <div class="pii-node key">
+          <div class="n">03</div>
+          <div class="ic">✱</div>
+          <h4>Mask PII</h4>
+          <p>Names, amounts and accounts become placeholder tokens.</p>
+        </div>
+        <div class="pii-arrow">→</div>
+        <div class="pii-node">
+          <div class="n">04</div>
+          <div class="ic">◈</div>
+          <h4>Call the model</h4>
+          <p>Only the masked prompt leaves — never the real details.</p>
+        </div>
+        <div class="pii-arrow">→</div>
+        <div class="pii-node key">
+          <div class="n">05</div>
+          <div class="ic">↺</div>
+          <h4>Unmask</h4>
+          <p>The tokens are swapped back to the real values, at home.</p>
+        </div>
+        <div class="pii-arrow">→</div>
+        <div class="pii-node">
+          <div class="n">06</div>
+          <div class="ic">➤</div>
+          <h4>Reply</h4>
+          <p>You get the real answer back in the thread. That's it.</p>
+        </div>
+      </div>
+
+      <div class="pii-example reveal">
+        <div class="pii-col masked">
+          <span class="lbl">✱ &nbsp;What the model sees</span>
+          <code>"how much did we send <mark>‹PERSON_2›</mark> for the reno? budget was <mark>‹AMOUNT_1›</mark>."</code>
+        </div>
+        <div class="pii-col">
+          <span class="lbl">What you see</span>
+          <code>"you sent <b>Elaine</b> <b>RM4,000</b> in June. budget was <b>RM50k</b> — still on track."</code>
+        </div>
       </div>
     </div>
   </section>
