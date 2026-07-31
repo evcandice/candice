@@ -372,7 +372,7 @@ footer{border-top:1px solid var(--line-2); padding:clamp(40px,6vw,64px) 0 48px; 
           <div class="n">03</div>
           <div class="ic">✱</div>
           <h4>Mask PII</h4>
-          <p>Names, amounts and accounts become placeholder tokens.</p>
+          <p>Names, emails, phone numbers and cards become placeholder tokens.</p>
         </div>
         <div class="pii-arrow">→</div>
         <div class="pii-node">
@@ -400,11 +400,11 @@ footer{border-top:1px solid var(--line-2); padding:clamp(40px,6vw,64px) 0 48px; 
       <div class="pii-example reveal">
         <div class="pii-col masked">
           <span class="lbl">✱ &nbsp;What the model sees</span>
-          <code>"how much did we send <mark>‹PERSON_2›</mark> for the reno? budget was <mark>‹AMOUNT_1›</mark>."</code>
+          <code>"did <mark>[PERSON_2]</mark> reply from <mark>[EMAIL_1]</mark> about the reno quote?"</code>
         </div>
         <div class="pii-col">
           <span class="lbl">What you see</span>
-          <code>"you sent <b>Elaine</b> <b>RM4,000</b> in June. budget was <b>RM50k</b> — still on track."</code>
+          <code>"yep — <b>Elaine</b> emailed back from <b>elaine@…</b> this morning. the quote came in <b>RM4,000</b> under budget."</code>
         </div>
       </div>
     </div>
