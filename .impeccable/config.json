@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-05T14:21:54.401Z",
+        "reason": "Sampled from assets/candice-hello.jpg, the paper the hero octopus is painted on, so the page and the artwork read as one surface. Not the reflex warm off-white."
+      }
+    ]
+  }
+}

@@ -18,22 +18,26 @@ The detector checks new work against these tokens. Additions should be deliberat
 
 Functional text never below 13px. Body measure capped 65–72ch.
 
-## Color (warm dark — OKLCH-authored, hex fallbacks documented)
+## Color (warm paper — sampled from the hero painting)
 | Token | Value | Use |
 |-------|-------|-----|
-| --bg | #1b1917 | page |
-| --surface | #232019 | cards |
-| --raised | #2b261e | nested / inputs |
-| --ink | #f4efe6 | headings |
-| --body | #d6ccbb | body text |
-| --muted | #b3a892 | labels, meta (AA ≥ 4.5:1 on --bg) |
-| --accent | #c99a5b | brass — the one accent |
-| --accent-strong | #d8ab68 | hover / emphasis |
-| --blush | #e0a59c | tiny secondary tint only |
-| --line | rgba(244,239,230,.12) | hairline borders |
+| --bg | #FBF7EC | page — the paper the octopus is painted on |
+| --surface | #FFFCF4 | cards, a shade above the page |
+| --raised | #FFFEFA | nested / inputs |
+| --ink | #231A12 | headings — the painting's outline, warm, never pure black |
+| --body | #4D4234 | body text (9.15:1 on --bg) |
+| --muted | #766A58 | labels, meta (4.94:1 on --bg) |
+| --accent | #ED6E19 | orange — the shadow side of the octopus, the one accent |
+| --accent-strong | #A84503 | hover / emphasis; AA on the page (5.58:1) and on the token tint (5.02:1) |
+| --blush | #E89A72 | tiny secondary tint only |
+| --line | rgba(35,26,18,.13) | hairline borders |
+
+The primary button carries a dark label at rest and a near-white one on hover, because
+--accent-strong is too dark for the dark label.
 
 Rules: no pure #000/#fff, neutrals tinted warm, 60/30/10 weight, accent stays rare.
 No glows (no colored box-shadow), no gradient text, no purple/cyan.
+The iPhone frame keeps its own dark greys — it is a photograph of a device, not chrome.
 
 ## Shape / radius
 | Token | Value |

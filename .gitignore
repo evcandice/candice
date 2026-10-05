@@ -1,0 +1,3 @@
+# local tooling output, not part of the site
+.gstack/
+.DS_Store
