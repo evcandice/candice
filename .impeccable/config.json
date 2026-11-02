@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-05T14:21:54.401Z",
+        "reason": "Sampled from the paper of the former painted hero (candice-hello.jpg, since removed). The animated hero octopus is rendered on this same colour, so the page and the artwork read as one surface. Not the reflex warm off-white."
+      }
+    ]
+  }
+}

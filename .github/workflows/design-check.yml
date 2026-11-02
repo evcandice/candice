@@ -1,0 +1,22 @@
+name: design-check
+
+# Fails the run if the site regresses into AI-slop / design anti-patterns.
+# Runs the impeccable detector against index.html on every push and PR.
+
+on:
+  push:
+    branches: [master]
+    paths: ['index.html', 'DESIGN.md', '.impeccable.md']
+  pull_request:
+    paths: ['index.html', 'DESIGN.md', '.impeccable.md']
+
+jobs:
+  impeccable:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run impeccable detector
+        run: npx --yes impeccable detect index.html
